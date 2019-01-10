@@ -33,6 +33,7 @@ public class SpringBootStarterTransactionExample {
     
     public static void main(final String[] args) {
         try (ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringBootStarterTransactionExample.class, args)) {
+            System.out.println("本次为加事务测试");
             process(applicationContext);
         }
     }
@@ -43,10 +44,10 @@ public class SpringBootStarterTransactionExample {
         processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         processFailureSingleTransaction(transactionService, TransactionType.XA);
         processFailureSingleTransaction(transactionService, TransactionType.BASE);
-        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
     }
     
     private static void processFailureSingleTransaction(final TransactionService transactionService, final TransactionType type) {
+        System.out.println("Print OrderItem Data 不能打印信息为事务回滚成功");
         try {
             switch (type) {
                 case LOCAL:

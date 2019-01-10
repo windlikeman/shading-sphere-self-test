@@ -38,6 +38,7 @@ public class SpringBootStarterExample {
     }
     
     private static void process(final ConfigurableApplicationContext applicationContext) {
+        System.out.println("本次为不加事务测试");
         CommonService commonService = getCommonService(applicationContext);
         commonService.processSuccess(false);
         try {

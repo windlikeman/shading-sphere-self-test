@@ -17,11 +17,14 @@
 
 package io.shardingsphere.example.repository.api.service;
 
+import com.alibaba.fastjson.JSON;
 import io.shardingsphere.example.repository.api.entity.Order;
 import io.shardingsphere.example.repository.api.entity.OrderItem;
 import io.shardingsphere.example.repository.api.repository.OrderItemRepository;
 import io.shardingsphere.example.repository.api.repository.OrderRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.json.Json;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,59 +32,71 @@ public abstract class CommonServiceImpl implements CommonService {
     
     @Override
     public void initEnvironment() {
-//        getOrderRepository().createTableIfNotExists();
-//        getOrderItemRepository().createTableIfNotExists();
-//        getOrderRepository().truncateTable();
-//        getOrderItemRepository().truncateTable();
+        //如果表不存在创建表
+        getOrderRepository().createTableIfNotExists();
+        getOrderItemRepository().createTableIfNotExists();
+        //清空数据
+        getOrderRepository().truncateTable();
+        getOrderItemRepository().truncateTable();
     }
-    
+
+    /**
+     * 注釋掉查看数据
+     */
     @Override
     public void cleanEnvironment() {
 //        getOrderRepository().dropTable();
 //        getOrderItemRepository().dropTable();
     }
     
-//    @Transactional
+    @Transactional
     @Override
     public void processSuccess(final boolean isRangeSharding) {
-//        System.out.println("-------------- Process Success Begin ---------------");
-//        List<Long> orderIds = insertData();
+        System.out.println("-------------- 一个成功的事务 ---------------");
+        System.out.println("-------------- Process Success Begin ---------------");
+        List<Long> orderIds = insertData();
         printData(isRangeSharding);
-//        deleteData(orderIds);
-//        printData(isRangeSharding);
-//        System.out.println("-------------- Process Success Finish --------------");
+        deleteData(orderIds);
+        printData(isRangeSharding);
+        System.out.println("-------------- Process Success Finish --------------");
     }
     
-//    @Transactional
+    @Transactional
     @Override
     public void processFailure() {
-//        System.out.println("-------------- Process Failure Begin ---------------");
-//        insertData();
-//        System.out.println("-------------- Process Failure Finish --------------");
-//        throw new RuntimeException("Exception occur for transaction test.");
+        System.out.println("-------------- 一个失败的事务 ---------------");
+        System.out.println("-------------- Process Failure Begin ---------------");
+        insertData();
+        System.out.println("-------------- Process Failure Finish --------------");
+        throw new RuntimeException("Exception occur for transaction test.");
     }
     
     private List<Long> insertData() {
-        System.out.println("---------------------------- Insert Data ----------------------------");
+        System.out.println("---------------------------- Begin Insert Data ----------------------------");
         List<Long> result = new ArrayList<>(10);
+        System.out.println("开始插入数据");
         for (int i = 1; i <= 10; i++) {
             Order order = newOrder();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
+            System.out.println(JSON.toJSONString(order));
             getOrderRepository().insert(order);
             OrderItem item = newOrderItem();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST");
+            System.out.println(JSON.toJSONString(item));
             getOrderItemRepository().insert(item);
             result.add(order.getOrderId());
         }
+        System.out.println("---------------------------- collected data but not commit ----------------------------");
         return result;
     }
     
     private void deleteData(final List<Long> orderIds) {
         System.out.println("---------------------------- Delete Data ----------------------------");
         for (Long each : orderIds) {
+            System.out.println("根据id删除数据:"+each);
             getOrderRepository().delete(each);
             getOrderItemRepository().delete(each);
         }
@@ -98,12 +113,14 @@ public abstract class CommonServiceImpl implements CommonService {
     
     private void printDataRange() {
         System.out.println("---------------------------- Print Order Data -----------------------");
-        for (Object each : getOrderRepository().selectRange()) {
-            System.out.println(each);
+        System.out.println("查找id 1-5之间的数据");
+        for (Order order : getOrderRepository().selectRange()) {
+            System.out.println(JSON.toJSONString(order));
         }
         System.out.println("---------------------------- Print OrderItem Data -------------------");
-        for (Object each : getOrderItemRepository().selectRange()) {
-            System.out.println(each);
+        System.out.println("查找id 1-5之间的数据");
+        for (OrderItem orderItem : getOrderItemRepository().selectRange()) {
+            System.out.println(JSON.toJSONString(orderItem));
         }
     }
     
@@ -111,14 +128,15 @@ public abstract class CommonServiceImpl implements CommonService {
         getOrderRepository().selectAll();
         System.out.println("--------------------------------------------------");
         long before = System.nanoTime();
-        for (int i = 0; i < 1; i++) {
-            getOrderRepository().selectAll();
+        List<Order> orders = getOrderRepository().selectAll();
+        for (Order order : orders) {
+            System.out.println("order:" + JSON.toJSONString(order));
         }
-        System.out.println("Total:" + (System.nanoTime() - before));
-//        System.out.println("---------------------------- Print OrderItem Data -------------------");
-//        for (Object each : getOrderItemRepository().selectAll()) {
-//            System.out.println(each);
-//        }
+        System.out.println("Total use time:" + (System.nanoTime() - before) + "纳秒");
+        System.out.println("---------------------------- Print OrderItem Data -------------------");
+        for (OrderItem orderItem : getOrderItemRepository().selectAll()) {
+            System.out.println("orderItem:" + JSON.toJSONString(orderItem));
+        }
     }
     
     protected abstract OrderRepository getOrderRepository();

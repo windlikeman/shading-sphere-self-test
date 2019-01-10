@@ -7,7 +7,7 @@
     <artifactId>sharding-sphere-self-test</artifactId>
     <version>3.1.0</version>
     <packaging>pom</packaging>
-    <name>sharding-sphere-self-test</name>
+
     <modules>
         <module>common-repository</module>
         <module>example-utility</module>
@@ -179,6 +179,7 @@
                 <version>${mybatis-spring.version}</version>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
     
     <dependencies>
@@ -186,6 +187,11 @@
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>${commons-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.46</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

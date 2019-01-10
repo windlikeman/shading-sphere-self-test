@@ -26,6 +26,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * 试想，在一个操作中通过循环插入多个数据，而且使用它们的id作为另一个插入操作的内容，这样肯定会出问题，因为事务还未提交
+ * 也就是说那个id还不存在，肯定会出现空指针异常或者就是默认为0
+ * 通过分布式事务可以解决这个问题
+ * XA协议采用两阶段提交方式来管理分布式事务
+ */
 @ComponentScan("io.shardingsphere.example.repository.mybatis")
 @MapperScan(basePackages = "io.shardingsphere.example.repository.mybatis.repository")
 @SpringBootApplication
@@ -44,7 +50,6 @@ public class SpringBootStarterTransactionExample {
         processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         processFailureSingleTransaction(transactionService, TransactionType.XA);
         processFailureSingleTransaction(transactionService, TransactionType.BASE);
-        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         transactionService.cleanEnvironment();
     }
     

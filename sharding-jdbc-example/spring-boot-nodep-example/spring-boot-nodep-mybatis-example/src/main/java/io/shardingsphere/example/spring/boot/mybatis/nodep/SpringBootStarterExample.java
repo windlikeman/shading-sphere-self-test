@@ -26,6 +26,10 @@ import org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfigurati
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * 试想，在一个操作中通过循环插入多个数据，而且使用它们的id作为另一个插入操作的内容，这样肯定会出问题，因为事务还未提交
+ * 也就是说那个id还不存在，肯定会出现空指针异常或者就是默认为0
+ */
 @ComponentScan("io.shardingsphere.example.repository.mybatis")
 @MapperScan(basePackages = "io.shardingsphere.example.repository.mybatis.repository")
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
@@ -36,7 +40,7 @@ public class SpringBootStarterExample {
             process(applicationContext);
         }
     }
-    
+
     private static void process(final ConfigurableApplicationContext applicationContext) {
         CommonService commonService = getCommonService(applicationContext);
         commonService.initEnvironment();
