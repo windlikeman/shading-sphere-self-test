@@ -21,20 +21,23 @@ public interface TransactionService extends CommonService {
 
     /**
      * 事务类别
-     * LOCAL,
-     * XA,
-     * BASE;
-     * 本地事务运行失败
+     * 本地事务
+     * 完全支持非跨库事务，例如：仅分表，或分库但是路由的结果在单库中。
+     * 完全支持因逻辑异常导致的跨库事务。例如：同一事务中，跨两个库更新。更新完毕后，抛出空指针，则两个库的内容都能回滚。
+     * 不支持因网络、硬件异常导致的跨库事务。例如：同一事务中，跨两个库更新，更新完毕后、未提交之前，第一个库宕机，则只有第二个库数据提交。
      */
     void processFailureWithLocal();
 
     /**
-     * 分布式事务运行失败（强一致性事务）
+     * 分布式事务（强一致性事务）
+     * 完全支持跨库事务。
+     * 默认使用Atomikos，支持使用SPI的方式加载其他XA事务管理器。
      */
     void processFailureWithXa();
 
     /**
-     * 柔性事务运行失败
+     * 柔性事务
+     * 预计4.0.0支持
      */
     void processFailureWithBase();
 

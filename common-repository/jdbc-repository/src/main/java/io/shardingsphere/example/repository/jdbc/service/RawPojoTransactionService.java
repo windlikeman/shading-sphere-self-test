@@ -33,7 +33,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * 原始的pojo服务
+ * 测试不同模式的事务回滚
  */
 public final class RawPojoTransactionService extends CommonServiceImpl implements TransactionService {
     

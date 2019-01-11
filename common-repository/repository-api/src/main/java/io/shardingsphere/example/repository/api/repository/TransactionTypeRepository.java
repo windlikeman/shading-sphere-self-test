@@ -20,7 +20,7 @@ package io.shardingsphere.example.repository.api.repository;
 import io.shardingsphere.example.repository.api.entity.TransactionType;
 
 /**
- * 事务类别
+ * 展示事务类别
  */
 public interface TransactionTypeRepository {
 

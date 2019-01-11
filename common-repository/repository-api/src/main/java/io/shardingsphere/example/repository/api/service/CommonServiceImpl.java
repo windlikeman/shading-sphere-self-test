@@ -29,7 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CommonServiceImpl implements CommonService {
-    
+
+    /**
+     * 初始化表
+     */
     @Override
     public void initEnvironment() {
         //如果表不存在创建表
@@ -41,14 +44,18 @@ public abstract class CommonServiceImpl implements CommonService {
     }
 
     /**
-     * 注釋掉查看数据
+     * 删除表
      */
     @Override
     public void cleanEnvironment() {
-//        getOrderRepository().dropTable();
-//        getOrderItemRepository().dropTable();
+        getOrderRepository().dropTable();
+        getOrderItemRepository().dropTable();
     }
-    
+
+    /**
+     * 测试正常操作
+     * @param isRangeSharding
+     */
     @Transactional
     @Override
     public void processSuccess(final boolean isRangeSharding) {
@@ -60,7 +67,10 @@ public abstract class CommonServiceImpl implements CommonService {
         printData(isRangeSharding);
         System.out.println("-------------- Process Success Finish --------------");
     }
-    
+
+    /**
+     * 测试回滚
+     */
     @Transactional
     @Override
     public void processFailure() {
@@ -70,7 +80,13 @@ public abstract class CommonServiceImpl implements CommonService {
         System.out.println("-------------- Process Failure Finish --------------");
         throw new RuntimeException("Exception occur for transaction test.");
     }
-    
+
+    /**
+     * 插入10条订单和订单详情数据
+     * 订单插入后才会插入订单详情数据，使用订单插入返回的主键id
+     * 一般来说这么操作肯定会出现问题，因为事务不提交这个id肯定是有问题的，所以通过这种方式测试事务
+     * @return 返回所有id
+     */
     private List<Long> insertData() {
         System.out.println("---------------------------- Begin Insert Data ----------------------------");
         List<Long> result = new ArrayList<>(10);
@@ -92,7 +108,11 @@ public abstract class CommonServiceImpl implements CommonService {
         System.out.println("---------------------------- collected data but not commit ----------------------------");
         return result;
     }
-    
+
+    /**
+     * 根据id删除数据
+     * @param orderIds
+     */
     private void deleteData(final List<Long> orderIds) {
         System.out.println("---------------------------- Delete Data ----------------------------");
         for (Long each : orderIds) {
@@ -101,7 +121,11 @@ public abstract class CommonServiceImpl implements CommonService {
             getOrderItemRepository().delete(each);
         }
     }
-    
+
+    /**
+     * 打印数据
+     * @param isRangeSharding
+     */
     @Override
     public void printData(final boolean isRangeSharding) {
         if (isRangeSharding) {
@@ -123,7 +147,10 @@ public abstract class CommonServiceImpl implements CommonService {
             System.out.println(JSON.toJSONString(orderItem));
         }
     }
-    
+
+    /**
+     * 打印全部数据，计时
+     */
     private void printDataAll() {
         getOrderRepository().selectAll();
         System.out.println("--------------------------------------------------");

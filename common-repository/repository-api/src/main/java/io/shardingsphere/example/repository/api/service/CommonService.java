@@ -17,6 +17,9 @@
 
 package io.shardingsphere.example.repository.api.service;
 
+/**
+ * 公共测试方法
+ */
 public interface CommonService {
 
     /**

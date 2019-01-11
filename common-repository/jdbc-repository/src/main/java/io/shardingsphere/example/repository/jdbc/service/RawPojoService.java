@@ -26,7 +26,7 @@ import io.shardingsphere.example.repository.jdbc.repository.JDBCOrderItemReposit
 import io.shardingsphere.example.repository.jdbc.repository.JDBCOrderRepositoryImpl;
 
 /**
- * 原始的pojo服务
+ * 未添加事务
  */
 public class RawPojoService extends CommonServiceImpl {
     

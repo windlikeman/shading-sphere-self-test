@@ -16,7 +16,7 @@
     </modules>
     
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <maven.version.range>[3.0.4,)</maven.version.range>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.locale>zh_CN</project.build.locale>
@@ -24,8 +24,8 @@
         <sharding-sphere.version>3.1.0</sharding-sphere.version>
     
         <aspectjweaver.version>1.8.9</aspectjweaver.version>
-        <spring-framework.version>4.3.20.RELEASE</spring-framework.version>
-        <spring-boot.version>1.5.17.RELEASE</spring-boot.version>
+        <spring-framework.version>5.0.10.RELEASE</spring-framework.version>
+        <spring-boot.version>2.0.3.RELEASE</spring-boot.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <mysql-connector-java.version>5.1.42</mysql-connector-java.version>
         <postgresql.version>9.1-901-1.jdbc4</postgresql.version>

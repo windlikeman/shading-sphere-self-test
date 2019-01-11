@@ -20,7 +20,7 @@ package io.shardingsphere.example.repository.api.repository;
 import io.shardingsphere.example.repository.api.entity.OrderItem;
 
 /**
- * 订单详情
+ * 订单详情集成公共测试接口
  */
 public interface OrderItemRepository extends CommonRepository<OrderItem> {
 }

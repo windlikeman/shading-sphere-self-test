@@ -20,7 +20,7 @@ package io.shardingsphere.example.repository.api.repository;
 import java.util.List;
 
 /**
- * 公共实现类
+ * 公共实现类,为测试提供接口
  * @param <T>
  */
 public interface CommonRepository<T> {

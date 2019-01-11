@@ -23,7 +23,11 @@ import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorith
 import java.util.Collection;
 
 /**
- * 单双分库算法
+ * 将订单表中的订单主键的尾数取模分片，则订单主键为分片字段。
+ * SQL中如果无分片字段，将执行全路由，性能较差。
+ * 除了对单分片字段的支持，ShardingSphere也支持根据多个字段进行分片。
+ * 精确分片算法
+ * 对应PreciseShardingAlgorithm，用于处理使用单一键作为分片键的=与IN进行分片的场景。需要配合StandardShardingStrategy使用。
  */
 public class PreciseModuloShardingDatabaseAlgorithm implements PreciseShardingAlgorithm<Integer> {
     
