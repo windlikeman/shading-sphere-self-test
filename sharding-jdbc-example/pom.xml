@@ -18,5 +18,6 @@
         <module>spring-boot-orche-example</module>
         <module>spring-namespace-nodep-example</module>
         <module>spring-namespace-orche-example</module>
+        <module>sharding-db-tables-test</module>
     </modules>
 </project>

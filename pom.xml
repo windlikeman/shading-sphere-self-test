@@ -7,7 +7,8 @@
     <artifactId>sharding-sphere-self-test</artifactId>
     <version>3.1.0</version>
     <packaging>pom</packaging>
-
+    <name>sharding-sphere-self-test</name>
+    <description>sharding-sphere-self-test</description>
     <modules>
         <module>common-repository</module>
         <module>example-utility</module>

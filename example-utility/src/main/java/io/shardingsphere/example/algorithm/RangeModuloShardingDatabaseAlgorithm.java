@@ -26,7 +26,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * 范围分片算法
+ * ==和IN的分表算法实现
  * 对应RangeShardingAlgorithm，用于处理使用单一键作为分片键的BETWEEN AND进行分片的场景。需要配合StandardShardingStrategy使用。
  */
 public class RangeModuloShardingDatabaseAlgorithm implements RangeShardingAlgorithm<Integer> {
