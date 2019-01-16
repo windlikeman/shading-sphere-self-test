@@ -56,7 +56,7 @@ public abstract class CommonServiceImpl implements CommonService {
      * 测试正常操作
      * @param isRangeSharding
      */
-    @Transactional
+//    @Transactional
     @Override
     public void processSuccess(final boolean isRangeSharding) {
         System.out.println("-------------- 一个成功的事务 ---------------");
@@ -71,7 +71,7 @@ public abstract class CommonServiceImpl implements CommonService {
     /**
      * 测试回滚
      */
-    @Transactional
+//    @Transactional
     @Override
     public void processFailure() {
         System.out.println("-------------- 一个失败的事务 ---------------");
@@ -95,13 +95,13 @@ public abstract class CommonServiceImpl implements CommonService {
             Order order = newOrder();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
-            System.out.println(JSON.toJSONString(order));
+            System.out.println("第" + i + "次循环order；" + order.toString());
             getOrderRepository().insert(order);
             OrderItem item = newOrderItem();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST");
-            System.out.println(JSON.toJSONString(item));
+            System.out.println("第" + i + "次循环item；" + JSON.toJSONString(item));
             getOrderItemRepository().insert(item);
             result.add(order.getOrderId());
         }

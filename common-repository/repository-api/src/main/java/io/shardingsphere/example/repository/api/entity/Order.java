@@ -58,6 +58,6 @@ public class Order implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("order_id: %s, user_id: %s, status: %s", orderId, userId, status);
+        return String.format("user_id: %s, status: %s", userId, status);
     }
 }
