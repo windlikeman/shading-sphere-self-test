@@ -43,7 +43,8 @@ public class SpringBootStarterTransactionExample {
         transactionService.processSuccess(false);
         processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         processFailureSingleTransaction(transactionService, TransactionType.XA);
-        processFailureSingleTransaction(transactionService, TransactionType.BASE);
+        //暂未支持
+//        processFailureSingleTransaction(transactionService, TransactionType.BASE);
     }
     
     private static void processFailureSingleTransaction(final TransactionService transactionService, final TransactionType type) {

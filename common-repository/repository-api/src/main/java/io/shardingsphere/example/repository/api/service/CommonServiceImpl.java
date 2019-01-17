@@ -95,14 +95,14 @@ public abstract class CommonServiceImpl implements CommonService {
             Order order = newOrder();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
-            System.out.println("第" + i + "次循环order；" + order.toString());
             getOrderRepository().insert(order);
+            System.out.println("第" + i + "次循环order；" + JSON.toJSONString(order));
             OrderItem item = newOrderItem();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST");
-            System.out.println("第" + i + "次循环item；" + JSON.toJSONString(item));
             getOrderItemRepository().insert(item);
+            System.out.println("第" + i + "次循环item；" + JSON.toJSONString(item));
             result.add(order.getOrderId());
         }
         System.out.println("---------------------------- collected data but not commit ----------------------------");

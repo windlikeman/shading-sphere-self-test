@@ -33,7 +33,7 @@ public class PreciseModuloShardingDatabaseAlgorithm implements PreciseShardingAl
     
     @Override
     public String doSharding(final Collection<String> databaseNames, final PreciseShardingValue<Integer> shardingValue) {
-        //根据奇偶分表
+        //根据余数分表
         for (String each : databaseNames) {
             if (each.endsWith(shardingValue.getValue() % 2 + "")) {
                 return each;

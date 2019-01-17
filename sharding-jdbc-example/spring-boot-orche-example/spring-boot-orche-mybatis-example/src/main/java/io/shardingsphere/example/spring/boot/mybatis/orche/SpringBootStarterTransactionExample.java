@@ -47,8 +47,8 @@ public class SpringBootStarterTransactionExample {
         transactionService.processSuccess(false);
         processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         processFailureSingleTransaction(transactionService, TransactionType.XA);
-        processFailureSingleTransaction(transactionService, TransactionType.BASE);
-        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
+//        processFailureSingleTransaction(transactionService, TransactionType.BASE);
+//        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         transactionService.cleanEnvironment();
     }
     

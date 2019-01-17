@@ -26,10 +26,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-/*
- * 1. Please make sure sharding-orchestration-reg-zookeeper-curator in your pom if registryCenterType = RegistryCenterType.ZOOKEEPER.
- * 2. Please make sure sharding-orchestration-reg-etcd in your pom if registryCenterType = RegistryCenterType.ETCD.
- */
 @ComponentScan("io.shardingsphere.example.repository.jpa")
 @EntityScan(basePackages = "io.shardingsphere.example.repository.jpa.entity")
 @SpringBootApplication
@@ -46,8 +42,8 @@ public class SpringBootStarterTransactionExample {
         transactionService.processSuccess(false);
         processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
         processFailureSingleTransaction(transactionService, TransactionType.XA);
-        processFailureSingleTransaction(transactionService, TransactionType.BASE);
-        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
+//        processFailureSingleTransaction(transactionService, TransactionType.BASE);
+//        processFailureSingleTransaction(transactionService, TransactionType.LOCAL);
     }
     
     private static void processFailureSingleTransaction(final TransactionService transactionService, final TransactionType type) {
