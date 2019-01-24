@@ -12,7 +12,6 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>spring-boot-orche-jpa-example</module>
         <module>spring-boot-orche-mybatis-example</module>
     </modules>
     
