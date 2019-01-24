@@ -11,7 +11,7 @@
     <description>sharding-sphere-self-test</description>
     <modules>
         <module>common-repository</module>
-        <module>sharding-jdbc-example</module>
+        <module>spring-boot-orche-mybatis-example</module>
     </modules>
     
     <properties>
