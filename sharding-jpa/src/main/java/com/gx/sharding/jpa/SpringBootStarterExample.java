@@ -1,6 +1,6 @@
 package com.gx.sharding.jpa;
 
-import io.shardingsphere.example.repository.api.service.CommonService;
+import io.shardingsphere.example.repository.jpa.service.CommonService;
 import io.shardingsphere.example.repository.jpa.service.SpringEntityService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

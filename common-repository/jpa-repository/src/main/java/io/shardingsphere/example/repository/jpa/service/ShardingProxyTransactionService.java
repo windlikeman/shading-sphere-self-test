@@ -15,9 +15,9 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.service;
+package io.shardingsphere.example.repository.jpa.service;
 
-import io.shardingsphere.example.repository.api.repository.TransactionTypeRepository;
+import io.shardingsphere.example.repository.jpa.repository.TransactionTypeRepository;
 import io.shardingsphere.transaction.annotation.ShardingTransactionType;
 import io.shardingsphere.transaction.api.TransactionType;
 import org.springframework.transaction.annotation.Transactional;

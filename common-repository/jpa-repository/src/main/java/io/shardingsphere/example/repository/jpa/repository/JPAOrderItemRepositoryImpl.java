@@ -17,8 +17,7 @@
 
 package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.OrderItem;
-import io.shardingsphere.example.repository.api.repository.OrderItemRepository;
+import io.shardingsphere.example.repository.jpa.entity.OrderItem;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -60,7 +59,7 @@ public class JPAOrderItemRepositoryImpl implements OrderItemRepository {
     
     @Override
     public void delete(final Long orderItemId) {
-        Query query = entityManager.createQuery("DELETE FROM OrderItemEntity i WHERE i.orderItemId = ?1 AND i.userId = 51");
+        Query query = entityManager.createQuery("DELETE FROM OrderItem i WHERE i.orderItemId = ?1 AND i.userId = 51");
         query.setParameter(1, orderItemId);
         query.executeUpdate();
     }
@@ -68,12 +67,12 @@ public class JPAOrderItemRepositoryImpl implements OrderItemRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<OrderItem> selectAll() {
-        return (List<OrderItem>) entityManager.createQuery("SELECT i FROM OrderEntity o, OrderItemEntity i WHERE o.orderId = i.orderId").getResultList();
+        return (List<OrderItem>) entityManager.createQuery("SELECT i FROM Order o, OrderItem i WHERE o.orderId = i.orderId").getResultList();
     }
     
     @SuppressWarnings("unchecked")
     @Override
     public List<OrderItem> selectRange() {
-        return (List<OrderItem>) entityManager.createQuery("SELECT i FROM OrderEntity o, OrderItemEntity i WHERE o.orderId = i.orderId AND o.userId BETWEEN 1 AND 5").getResultList();
+        return (List<OrderItem>) entityManager.createQuery("SELECT i FROM Order o, OrderItem i WHERE o.orderId = i.orderId AND o.userId BETWEEN 1 AND 5").getResultList();
     }
 }

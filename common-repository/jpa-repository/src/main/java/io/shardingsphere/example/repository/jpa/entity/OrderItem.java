@@ -17,21 +17,30 @@
 
 package io.shardingsphere.example.repository.jpa.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * 订单详情
+ * 对初始的实体进行扩展，进行分表
  */
+@Entity
+@Table(name = "t_order_item")
 public class OrderItem implements Serializable {
     
     private static final long serialVersionUID = 263434701950670170L;
-    
+
+    @Id
+    @Column(name = "order_item_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderItemId;
-    
+
+    @Column(name = "order_id")
     private long orderId;
-    
+
+    @Column(name = "user_id")
     private int userId;
-    
+
+    @Column(name = "status")
     private String status;
     
     public long getOrderItemId() {

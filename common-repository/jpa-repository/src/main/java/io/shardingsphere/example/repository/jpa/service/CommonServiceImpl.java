@@ -15,16 +15,14 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.service;
+package io.shardingsphere.example.repository.jpa.service;
 
 import com.alibaba.fastjson.JSON;
-import io.shardingsphere.example.repository.api.entity.Order;
-import io.shardingsphere.example.repository.api.entity.OrderItem;
-import io.shardingsphere.example.repository.api.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.api.repository.OrderRepository;
-import org.springframework.transaction.annotation.Transactional;
+import io.shardingsphere.example.repository.jpa.entity.Order;
+import io.shardingsphere.example.repository.jpa.entity.OrderItem;
+import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
+import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
 
-import javax.json.Json;
 import java.util.ArrayList;
 import java.util.List;
 

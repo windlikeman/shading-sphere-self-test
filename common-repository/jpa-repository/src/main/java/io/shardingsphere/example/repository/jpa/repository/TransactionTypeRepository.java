@@ -15,9 +15,10 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.repository;
+package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.TransactionType;
+
+import io.shardingsphere.example.repository.jpa.entity.TransactionType;
 
 /**
  * 展示事务类别

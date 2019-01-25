@@ -17,14 +17,11 @@
 
 package io.shardingsphere.example.repository.jpa.service;
 
-import io.shardingsphere.example.repository.api.entity.Order;
-import io.shardingsphere.example.repository.api.entity.OrderItem;
-import io.shardingsphere.example.repository.api.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.api.repository.OrderRepository;
-import io.shardingsphere.example.repository.api.repository.TransactionTypeRepository;
-import io.shardingsphere.example.repository.api.service.ShardingProxyTransactionService;
-import io.shardingsphere.example.repository.jpa.entity.OrderEntity;
-import io.shardingsphere.example.repository.jpa.entity.OrderItemEntity;
+import io.shardingsphere.example.repository.jpa.entity.Order;
+import io.shardingsphere.example.repository.jpa.entity.OrderItem;
+import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
+import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
+import io.shardingsphere.example.repository.jpa.repository.TransactionTypeRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,12 +53,12 @@ public class SpringEntityShardingProxyTransactionServiceImpl extends ShardingPro
     
     @Override
     protected Order newOrder() {
-        return new OrderEntity();
+        return new Order();
     }
     
     @Override
     protected OrderItem newOrderItem() {
-        return new OrderItemEntity();
+        return new OrderItem();
     }
     
     @Override

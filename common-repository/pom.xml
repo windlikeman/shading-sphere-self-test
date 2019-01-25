@@ -12,7 +12,6 @@
     <packaging>pom</packaging>
     
     <modules>
-        <module>repository-api</module>
         <module>jpa-repository</module>
     </modules>
 </project>

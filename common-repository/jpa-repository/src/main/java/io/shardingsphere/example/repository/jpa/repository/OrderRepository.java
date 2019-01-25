@@ -15,12 +15,12 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.repository;
+package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.OrderItem;
+import io.shardingsphere.example.repository.jpa.entity.Order;
 
 /**
- * 订单详情集成公共测试接口
+ * 订单接口集成公共测试接口
  */
-public interface OrderItemRepository extends CommonRepository<OrderItem> {
+public interface OrderRepository extends CommonRepository<Order> {
 }

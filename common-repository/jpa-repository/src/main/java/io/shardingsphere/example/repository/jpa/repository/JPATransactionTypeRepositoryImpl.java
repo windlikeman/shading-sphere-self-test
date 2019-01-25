@@ -17,8 +17,7 @@
 
 package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.TransactionType;
-import io.shardingsphere.example.repository.api.repository.TransactionTypeRepository;
+import io.shardingsphere.example.repository.jpa.entity.TransactionType;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

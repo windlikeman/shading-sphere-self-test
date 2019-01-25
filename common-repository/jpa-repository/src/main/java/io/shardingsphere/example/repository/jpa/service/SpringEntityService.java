@@ -17,7 +17,5 @@
 
 package io.shardingsphere.example.repository.jpa.service;
 
-import io.shardingsphere.example.repository.api.service.CommonService;
-
 public interface SpringEntityService extends CommonService {
 }

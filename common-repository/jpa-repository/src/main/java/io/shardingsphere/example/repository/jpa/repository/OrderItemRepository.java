@@ -15,29 +15,12 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.entity;
+package io.shardingsphere.example.repository.jpa.repository;
 
-import java.io.Serializable;
+import io.shardingsphere.example.repository.jpa.entity.OrderItem;
 
 /**
- * 事务类型
+ * 订单详情集成公共测试接口
  */
-public class TransactionType implements Serializable {
-    
-    private static final long serialVersionUID = -5333195312041231003L;
-    
-    private String transactionType;
-    
-    public String getTransactionType() {
-        return transactionType;
-    }
-    
-    public void setTransactionType(final String transactionType) {
-        this.transactionType = transactionType;
-    }
-    
-    @Override
-    public String toString() {
-        return String.format("transactionType:%s", transactionType);
-    }
+public interface OrderItemRepository extends CommonRepository<OrderItem> {
 }

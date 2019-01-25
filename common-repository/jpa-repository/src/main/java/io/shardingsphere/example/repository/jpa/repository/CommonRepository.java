@@ -15,12 +15,27 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.api.repository;
+package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.Order;
+import java.util.List;
 
 /**
- * 订单接口集成公共测试接口
+ * 公共实现类,为测试提供接口
+ * @param <T>
  */
-public interface OrderRepository extends CommonRepository<Order> {
+public interface CommonRepository<T> {
+    
+    void createTableIfNotExists();
+    
+    void dropTable();
+    
+    void truncateTable();
+    
+    Long insert(T entity);
+    
+    void delete(Long id);
+    
+    List<T> selectAll();
+    
+    List<T> selectRange();
 }

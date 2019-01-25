@@ -17,8 +17,7 @@
 
 package io.shardingsphere.example.repository.jpa.repository;
 
-import io.shardingsphere.example.repository.api.entity.Order;
-import io.shardingsphere.example.repository.api.repository.OrderRepository;
+import io.shardingsphere.example.repository.jpa.entity.Order;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -60,7 +59,7 @@ public class JPAOrderRepositoryImpl implements OrderRepository {
     
     @Override
     public void delete(final Long orderId) {
-        Query query = entityManager.createQuery("DELETE FROM OrderEntity o WHERE o.orderId = ?1");
+        Query query = entityManager.createQuery("DELETE FROM Order o WHERE o.orderId = ?1");
         query.setParameter(1, orderId);
         query.executeUpdate();
     }
@@ -68,12 +67,12 @@ public class JPAOrderRepositoryImpl implements OrderRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<Order> selectAll() {
-        return (List<Order>) entityManager.createQuery("SELECT o FROM OrderEntity o").getResultList();
+        return (List<Order>) entityManager.createQuery("SELECT o FROM Order o").getResultList();
     }
     
     @SuppressWarnings("unchecked")
     @Override
     public List<Order> selectRange() {
-        return (List<Order>) entityManager.createQuery("SELECT o FROM OrderEntity o WHERE orderId BETWEEN 200000000000000000 AND 400000000000000000").getResultList();
+        return (List<Order>) entityManager.createQuery("SELECT o FROM Order o WHERE orderId BETWEEN 200000000000000000 AND 400000000000000000").getResultList();
     }
 }
