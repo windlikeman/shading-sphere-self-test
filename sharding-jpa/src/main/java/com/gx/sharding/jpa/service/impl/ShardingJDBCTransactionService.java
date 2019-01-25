@@ -17,25 +17,34 @@
 
 package com.gx.sharding.jpa.service.impl;
 
+import com.gx.sharding.jpa.service.CommonService;
+import com.gx.sharding.jpa.service.SpringEntityTransactionService;
 import com.gx.sharding.jpa.service.TransactionService;
 import io.shardingsphere.transaction.annotation.ShardingTransactionType;
 import io.shardingsphere.transaction.api.TransactionType;
 import io.shardingsphere.transaction.api.TransactionTypeHolder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * 在客户端进行分库分表的Sharding-JDBC，
  * 虽然可以作为轻量级微服务框架灵活应用，
  * 但却没有作为云接入端进行统一管控的能力
  */
-public abstract class ShardingJDBCTransactionService extends CommonServiceImpl implements TransactionService {
-    
+@Service("jdbcTransactionService")
+public class ShardingJDBCTransactionService implements TransactionService, SpringEntityTransactionService {
+
+    @Resource
+    private CommonService commonService;
+
     @Override
     @ShardingTransactionType
     @Transactional
     public void processFailureWithLocal() {
         printTransactionType();
-        super.processFailure();
+        commonService.processFailure();
     }
     
     @Override
@@ -43,7 +52,7 @@ public abstract class ShardingJDBCTransactionService extends CommonServiceImpl i
     @Transactional
     public void processFailureWithXa() {
         printTransactionType();
-        super.processFailure();
+        commonService.processFailure();
     }
     
     @Override
@@ -51,11 +60,12 @@ public abstract class ShardingJDBCTransactionService extends CommonServiceImpl i
     @Transactional
     public void processFailureWithBase() {
         printTransactionType();
-        super.processFailure();
+        commonService.processFailure();
     }
     
     @Override
     public void printTransactionType() {
         System.out.println(String.format("-------------- Process With Transaction %s ---------------", TransactionTypeHolder.get()));
     }
+
 }

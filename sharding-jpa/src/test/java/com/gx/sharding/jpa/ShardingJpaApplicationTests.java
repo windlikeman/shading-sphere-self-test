@@ -1,5 +1,6 @@
 package com.gx.sharding.jpa;
 
+import com.gx.sharding.jpa.service.CommonService;
 import com.gx.sharding.jpa.service.TransactionService;
 import com.gx.sharding.jpa.service.impl.ShardingJDBCTransactionService;
 import io.shardingsphere.transaction.api.TransactionType;
@@ -15,10 +16,12 @@ public class ShardingJpaApplicationTests {
 
     @Autowired
     private ShardingJDBCTransactionService shardingJDBCTransactionService;
+    @Autowired
+    private CommonService commonService;
 
     @Test
     public void contextLoads() {
-          shardingJDBCTransactionService.processSuccess(false);
+        commonService.processSuccess(false);
 //        processFailureSingleTransaction(SpringEntityTransactionService, TransactionType.LOCAL);
 //        processFailureSingleTransaction(SpringEntityTransactionService, TransactionType.XA);
 //        processFailureSingleTransaction(transactionService, TransactionType.BASE);

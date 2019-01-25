@@ -17,7 +17,7 @@
 
 package com.gx.sharding.jpa.service;
 
-public interface TransactionService extends CommonService {
+public interface TransactionService {
 
     /**
      * 事务类别

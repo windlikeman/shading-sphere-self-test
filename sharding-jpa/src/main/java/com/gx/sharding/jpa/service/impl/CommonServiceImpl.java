@@ -23,12 +23,20 @@ import com.gx.sharding.jpa.entity.OrderItem;
 import com.gx.sharding.jpa.repository.OrderItemRepository;
 import com.gx.sharding.jpa.repository.OrderRepository;
 import com.gx.sharding.jpa.service.CommonService;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CommonServiceImpl implements CommonService {
+@Service
+public class CommonServiceImpl implements CommonService {
 
+    @Resource
+    private OrderRepository orderRepository;
+
+    @Resource
+    private OrderItemRepository orderItemRepository;
 
 
     /**
@@ -72,13 +80,13 @@ public abstract class CommonServiceImpl implements CommonService {
             Order order = new Order();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
-            getOrderRepository().insert(order);
+            orderRepository.insert(order);
             System.out.println("第" + i + "次循环order；" + JSON.toJSONString(order));
             OrderItem item = new OrderItem();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST");
-            getOrderItemRepository().insert(item);
+            orderItemRepository.insert(item);
             System.out.println("第" + i + "次循环item；" + JSON.toJSONString(item));
             result.add(order.getOrderId());
         }
@@ -94,8 +102,8 @@ public abstract class CommonServiceImpl implements CommonService {
         System.out.println("---------------------------- Delete Data ----------------------------");
         for (Long each : orderIds) {
             System.out.println("根据id删除数据:"+each);
-            getOrderRepository().delete(each);
-            getOrderItemRepository().delete(each);
+            orderRepository.delete(each);
+            orderItemRepository.delete(each);
         }
     }
 
@@ -115,12 +123,12 @@ public abstract class CommonServiceImpl implements CommonService {
     private void printDataRange() {
         System.out.println("---------------------------- Print Order Data -----------------------");
         System.out.println("查找id 1-5之间的数据");
-        for (Order order : getOrderRepository().selectRange()) {
+        for (Order order : orderRepository.selectRange()) {
             System.out.println(JSON.toJSONString(order));
         }
         System.out.println("---------------------------- Print OrderItem Data -------------------");
         System.out.println("查找id 1-5之间的数据");
-        for (OrderItem orderItem : getOrderItemRepository().selectRange()) {
+        for (OrderItem orderItem : orderItemRepository.selectRange()) {
             System.out.println(JSON.toJSONString(orderItem));
         }
     }
@@ -129,21 +137,18 @@ public abstract class CommonServiceImpl implements CommonService {
      * 打印全部数据，计时
      */
     private void printDataAll() {
-        getOrderRepository().selectAll();
+        orderRepository.selectAll();
         System.out.println("--------------------------------------------------");
         long before = System.nanoTime();
-        List<Order> orders = getOrderRepository().selectAll();
+        List<Order> orders = orderRepository.selectAll();
         for (Order order : orders) {
             System.out.println("order:" + JSON.toJSONString(order));
         }
         System.out.println("Total use time:" + (System.nanoTime() - before) + "纳秒");
         System.out.println("---------------------------- Print OrderItem Data -------------------");
-        for (OrderItem orderItem : getOrderItemRepository().selectAll()) {
+        for (OrderItem orderItem : orderItemRepository.selectAll()) {
             System.out.println("orderItem:" + JSON.toJSONString(orderItem));
         }
     }
-    
-    protected abstract OrderRepository getOrderRepository();
-    
-    protected abstract OrderItemRepository getOrderItemRepository();
+
 }
