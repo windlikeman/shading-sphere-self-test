@@ -15,30 +15,31 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
-
-import io.shardingsphere.example.repository.jpa.entity.Order;
-import io.shardingsphere.example.repository.jpa.entity.OrderItem;
-import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
+import com.gx.sharding.jpa.entity.Order;
+import com.gx.sharding.jpa.entity.OrderItem;
+import com.gx.sharding.jpa.repository.OrderItemRepository;
+import com.gx.sharding.jpa.repository.OrderRepository;
+import com.gx.sharding.jpa.repository.TransactionTypeRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
 /**
- * 为抽象类赋值
+ * 基于代理端接入
  */
-@Service
-@Transactional
-public class SpringEntityServiceImpl extends CommonServiceImpl implements SpringEntityService {
+@Service("proxyTransactionService")
+public class SpringEntityShardingProxyTransactionServiceImpl extends ShardingProxyTransactionService implements SpringEntityTransactionService {
     
     @Resource
     private OrderRepository orderRepository;
     
     @Resource
     private OrderItemRepository orderItemRepository;
+    
+    @Resource
+    private TransactionTypeRepository transactionTypeRepository;
     
     @Override
     protected OrderRepository getOrderRepository() {
@@ -58,5 +59,10 @@ public class SpringEntityServiceImpl extends CommonServiceImpl implements Spring
     @Override
     protected OrderItem newOrderItem() {
         return new OrderItem();
+    }
+    
+    @Override
+    protected TransactionTypeRepository getTransactionTypeRepository() {
+        return transactionTypeRepository;
     }
 }

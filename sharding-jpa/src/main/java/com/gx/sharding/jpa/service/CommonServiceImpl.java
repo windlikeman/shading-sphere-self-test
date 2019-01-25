@@ -15,13 +15,13 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
 import com.alibaba.fastjson.JSON;
-import io.shardingsphere.example.repository.jpa.entity.Order;
-import io.shardingsphere.example.repository.jpa.entity.OrderItem;
-import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
+import com.gx.sharding.jpa.entity.Order;
+import com.gx.sharding.jpa.entity.OrderItem;
+import com.gx.sharding.jpa.repository.OrderItemRepository;
+import com.gx.sharding.jpa.repository.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,23 +15,24 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
-import io.shardingsphere.example.repository.jpa.entity.Order;
-import io.shardingsphere.example.repository.jpa.entity.OrderItem;
-import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
+
+import com.gx.sharding.jpa.entity.Order;
+import com.gx.sharding.jpa.entity.OrderItem;
+import com.gx.sharding.jpa.repository.OrderItemRepository;
+import com.gx.sharding.jpa.repository.OrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
 /**
- * 在客户端进行分库分表的Sharding-JDBC，
- * 虽然可以作为轻量级微服务框架灵活应用，
- * 但却没有作为云接入端进行统一管控的能力
+ * 为抽象类赋值
  */
-@Service("jdbcTransactionService")
-public class SpringEntityShardingJDBCTransactionServiceImpl extends ShardingJDBCTransactionService implements SpringEntityTransactionService {
+@Service
+@Transactional
+public class SpringEntityServiceImpl extends CommonServiceImpl implements SpringEntityService {
     
     @Resource
     private OrderRepository orderRepository;

@@ -15,20 +15,27 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.repository;
+package com.gx.sharding.jpa.repository;
 
-
-import io.shardingsphere.example.repository.jpa.entity.TransactionType;
+import java.util.List;
 
 /**
- * 展示事务类别
+ * 公共实现类,为测试提供接口
+ * @param <T>
  */
-public interface TransactionTypeRepository {
-
-    /**
-     * 展示事务类别
-     * @return
-     */
-    TransactionType showTransactionType();
+public interface CommonRepository<T> {
     
+    void createTableIfNotExists();
+    
+    void dropTable();
+    
+    void truncateTable();
+    
+    Long insert(T entity);
+    
+    void delete(Long id);
+    
+    List<T> selectAll();
+    
+    List<T> selectRange();
 }

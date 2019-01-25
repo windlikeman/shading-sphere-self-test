@@ -15,7 +15,29 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.entity;
 
-public interface SpringEntityService extends CommonService {
+import java.io.Serializable;
+
+/**
+ * 事务类型
+ */
+public class TransactionType implements Serializable {
+    
+    private static final long serialVersionUID = -5333195312041231003L;
+    
+    private String transactionType;
+    
+    public String getTransactionType() {
+        return transactionType;
+    }
+    
+    public void setTransactionType(final String transactionType) {
+        this.transactionType = transactionType;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("transactionType:%s", transactionType);
+    }
 }

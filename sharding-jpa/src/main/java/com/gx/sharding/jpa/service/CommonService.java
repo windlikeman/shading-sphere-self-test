@@ -15,7 +15,7 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
 /**
  * 公共测试方法

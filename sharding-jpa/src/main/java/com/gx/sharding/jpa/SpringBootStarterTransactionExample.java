@@ -1,16 +1,14 @@
 package com.gx.sharding.jpa;
 
-import io.shardingsphere.example.repository.jpa.service.SpringEntityTransactionService;
-import io.shardingsphere.example.repository.jpa.service.TransactionService;
+import com.gx.sharding.jpa.service.SpringEntityTransactionService;
+import com.gx.sharding.jpa.service.TransactionService;
 import io.shardingsphere.transaction.api.TransactionType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("io.shardingsphere.example.repository.jpa")
-@EntityScan(basePackages = "io.shardingsphere.example.repository.jpa.entity")
+@EntityScan(basePackages = "com.gx.sharding.jpa.entity")
 @SpringBootApplication
 public class SpringBootStarterTransactionExample {
 

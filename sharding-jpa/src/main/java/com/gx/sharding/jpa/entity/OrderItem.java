@@ -15,23 +15,26 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.entity;
+package com.gx.sharding.jpa.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * 订单
+ * 对初始的实体进行扩展，进行分表
  */
 @Entity
-@Table(name = "t_order")
-public class Order implements Serializable {
+@Table(name = "t_order_item")
+public class OrderItem implements Serializable {
     
-    private static final long serialVersionUID = 661434701950670670L;
+    private static final long serialVersionUID = 263434701950670170L;
 
     @Id
-    @Column(name = "order_id")
+    @Column(name = "order_item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long orderItemId;
+
+    @Column(name = "order_id")
     private long orderId;
 
     @Column(name = "user_id")
@@ -39,6 +42,14 @@ public class Order implements Serializable {
 
     @Column(name = "status")
     private String status;
+    
+    public long getOrderItemId() {
+        return orderItemId;
+    }
+    
+    public void setOrderItemId(final long orderItemId) {
+        this.orderItemId = orderItemId;
+    }
     
     public long getOrderId() {
         return orderId;
@@ -66,6 +77,6 @@ public class Order implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("user_id: %s, status: %s", userId, status);
+        return String.format("order_item_id:%s, order_id: %s, user_id: %s, status: %s", orderItemId, orderId, userId, status);
     }
 }

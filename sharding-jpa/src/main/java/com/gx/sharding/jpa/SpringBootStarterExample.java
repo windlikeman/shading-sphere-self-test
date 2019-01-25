@@ -1,16 +1,14 @@
 package com.gx.sharding.jpa;
 
-import io.shardingsphere.example.repository.jpa.service.CommonService;
-import io.shardingsphere.example.repository.jpa.service.SpringEntityService;
+import com.gx.sharding.jpa.service.CommonService;
+import com.gx.sharding.jpa.service.SpringEntityService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 
 
-@ComponentScan("io.shardingsphere.example.repository.jpa")
 @EntityScan(basePackages = "io.shardingsphere.example.repository.jpa.entity")
 @SpringBootApplication(exclude = JtaAutoConfiguration.class)
 public class SpringBootStarterExample {

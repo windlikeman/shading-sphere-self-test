@@ -15,9 +15,9 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.repository;
+package com.gx.sharding.jpa.repository;
 
-import io.shardingsphere.example.repository.jpa.entity.Order;
+import com.gx.sharding.jpa.entity.Order;
 
 /**
  * 订单接口集成公共测试接口

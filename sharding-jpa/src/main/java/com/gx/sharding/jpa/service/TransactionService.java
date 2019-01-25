@@ -15,7 +15,7 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
 public interface TransactionService extends CommonService {
 

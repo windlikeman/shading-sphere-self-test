@@ -15,12 +15,20 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.repository;
+package com.gx.sharding.jpa.repository;
 
-import io.shardingsphere.example.repository.jpa.entity.OrderItem;
+
+import com.gx.sharding.jpa.entity.TransactionType;
 
 /**
- * 订单详情集成公共测试接口
+ * 展示事务类别
  */
-public interface OrderItemRepository extends CommonRepository<OrderItem> {
+public interface TransactionTypeRepository {
+
+    /**
+     * 展示事务类别
+     * @return
+     */
+    TransactionType showTransactionType();
+    
 }

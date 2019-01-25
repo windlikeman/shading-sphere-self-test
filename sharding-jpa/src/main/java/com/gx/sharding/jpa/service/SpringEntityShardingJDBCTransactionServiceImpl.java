@@ -15,31 +15,29 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.service;
+package com.gx.sharding.jpa.service;
 
-import io.shardingsphere.example.repository.jpa.entity.Order;
-import io.shardingsphere.example.repository.jpa.entity.OrderItem;
-import io.shardingsphere.example.repository.jpa.repository.OrderItemRepository;
-import io.shardingsphere.example.repository.jpa.repository.OrderRepository;
-import io.shardingsphere.example.repository.jpa.repository.TransactionTypeRepository;
+import com.gx.sharding.jpa.entity.Order;
+import com.gx.sharding.jpa.entity.OrderItem;
+import com.gx.sharding.jpa.repository.OrderItemRepository;
+import com.gx.sharding.jpa.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
- * 基于代理端接入
+ * 在客户端进行分库分表的Sharding-JDBC，
+ * 虽然可以作为轻量级微服务框架灵活应用，
+ * 但却没有作为云接入端进行统一管控的能力
  */
-@Service("proxyTransactionService")
-public class SpringEntityShardingProxyTransactionServiceImpl extends ShardingProxyTransactionService implements SpringEntityTransactionService {
+@Service("jdbcTransactionService")
+public class SpringEntityShardingJDBCTransactionServiceImpl extends ShardingJDBCTransactionService implements SpringEntityTransactionService {
     
     @Resource
     private OrderRepository orderRepository;
     
     @Resource
     private OrderItemRepository orderItemRepository;
-    
-    @Resource
-    private TransactionTypeRepository transactionTypeRepository;
     
     @Override
     protected OrderRepository getOrderRepository() {
@@ -59,10 +57,5 @@ public class SpringEntityShardingProxyTransactionServiceImpl extends ShardingPro
     @Override
     protected OrderItem newOrderItem() {
         return new OrderItem();
-    }
-    
-    @Override
-    protected TransactionTypeRepository getTransactionTypeRepository() {
-        return transactionTypeRepository;
     }
 }

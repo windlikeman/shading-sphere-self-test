@@ -15,27 +15,7 @@
  * </p>
  */
 
-package io.shardingsphere.example.repository.jpa.repository;
+package com.gx.sharding.jpa.service;
 
-import java.util.List;
-
-/**
- * 公共实现类,为测试提供接口
- * @param <T>
- */
-public interface CommonRepository<T> {
-    
-    void createTableIfNotExists();
-    
-    void dropTable();
-    
-    void truncateTable();
-    
-    Long insert(T entity);
-    
-    void delete(Long id);
-    
-    List<T> selectAll();
-    
-    List<T> selectRange();
+public interface SpringEntityService extends CommonService {
 }
