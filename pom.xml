@@ -11,7 +11,7 @@
     <description>sharding-sphere-self-test</description>
     <modules>
         <module>common-repository</module>
-        <module>spring-boot-orche-jpa-example</module>
+        <module>sharding-jpa</module>
     </modules>
     
     <properties>
