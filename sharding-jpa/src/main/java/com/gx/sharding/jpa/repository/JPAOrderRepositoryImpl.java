@@ -35,22 +35,7 @@ public class JPAOrderRepositoryImpl implements OrderRepository {
      */
     @PersistenceContext
     private EntityManager entityManager;
-    
-    @Override
-    public void createTableIfNotExists() {
-        throw new UnsupportedOperationException("createTableIfNotExists for JPA");
-    }
-    
-    @Override
-    public void truncateTable() {
-        throw new UnsupportedOperationException("truncateTable for JPA");
-    }
-    
-    @Override
-    public void dropTable() {
-        throw new UnsupportedOperationException("dropTable for JPA");
-    }
-    
+
     @Override
     public Long insert(final Order order) {
         entityManager.persist(order);

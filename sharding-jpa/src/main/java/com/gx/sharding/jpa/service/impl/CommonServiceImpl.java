@@ -29,33 +29,12 @@ import java.util.List;
 
 public abstract class CommonServiceImpl implements CommonService {
 
-    /**
-     * 初始化表
-     */
-    @Override
-    public void initEnvironment() {
-        //如果表不存在创建表
-        getOrderRepository().createTableIfNotExists();
-        getOrderItemRepository().createTableIfNotExists();
-        //清空数据
-        getOrderRepository().truncateTable();
-        getOrderItemRepository().truncateTable();
-    }
 
-    /**
-     * 删除表
-     */
-    @Override
-    public void cleanEnvironment() {
-        getOrderRepository().dropTable();
-        getOrderItemRepository().dropTable();
-    }
 
     /**
      * 测试正常操作
      * @param isRangeSharding
      */
-//    @Transactional
     @Override
     public void processSuccess(final boolean isRangeSharding) {
         System.out.println("-------------- 一个成功的事务 ---------------");
@@ -70,7 +49,6 @@ public abstract class CommonServiceImpl implements CommonService {
     /**
      * 测试回滚
      */
-//    @Transactional
     @Override
     public void processFailure() {
         System.out.println("-------------- 一个失败的事务 ---------------");
@@ -91,12 +69,12 @@ public abstract class CommonServiceImpl implements CommonService {
         List<Long> result = new ArrayList<>(10);
         System.out.println("开始插入数据");
         for (int i = 1; i <= 1000; i++) {
-            Order order = newOrder();
+            Order order = new Order();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
             getOrderRepository().insert(order);
             System.out.println("第" + i + "次循环order；" + JSON.toJSONString(order));
-            OrderItem item = newOrderItem();
+            OrderItem item = new OrderItem();
             item.setOrderId(order.getOrderId());
             item.setUserId(i);
             item.setStatus("INSERT_TEST");
@@ -168,8 +146,4 @@ public abstract class CommonServiceImpl implements CommonService {
     protected abstract OrderRepository getOrderRepository();
     
     protected abstract OrderItemRepository getOrderItemRepository();
-    
-    protected abstract Order newOrder();
-    
-    protected abstract OrderItem newOrderItem();
 }

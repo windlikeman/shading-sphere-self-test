@@ -1,27 +1,24 @@
 package com.gx.sharding.jpa;
 
-import com.gx.sharding.jpa.service.SpringEntityTransactionService;
 import com.gx.sharding.jpa.service.TransactionService;
 import com.gx.sharding.jpa.service.impl.ShardingJDBCTransactionService;
 import io.shardingsphere.transaction.api.TransactionType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShardingJpaApplicationTests {
 
-    @Resource(name = "jdbcTransactionService")
-    private SpringEntityTransactionService SpringEntityTransactionService;
+    @Autowired
+    private ShardingJDBCTransactionService shardingJDBCTransactionService;
 
     @Test
     public void contextLoads() {
-        SpringEntityTransactionService.processSuccess(false);
+          shardingJDBCTransactionService.processSuccess(false);
 //        processFailureSingleTransaction(SpringEntityTransactionService, TransactionType.LOCAL);
 //        processFailureSingleTransaction(SpringEntityTransactionService, TransactionType.XA);
 //        processFailureSingleTransaction(transactionService, TransactionType.BASE);
@@ -45,7 +42,6 @@ public class ShardingJpaApplicationTests {
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            transactionService.printData(false);
         }
     }
 

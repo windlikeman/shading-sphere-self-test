@@ -19,8 +19,20 @@ package com.gx.sharding.jpa.repository;
 
 import com.gx.sharding.jpa.entity.OrderItem;
 
+import java.util.List;
+
 /**
  * 订单详情集成公共测试接口
  */
-public interface OrderItemRepository extends CommonRepository<OrderItem> {
+public interface OrderItemRepository {
+
+
+    Long insert(OrderItem entity);
+
+    void delete(Long id);
+
+    List<OrderItem> selectAll();
+
+    List<OrderItem> selectRange();
+
 }

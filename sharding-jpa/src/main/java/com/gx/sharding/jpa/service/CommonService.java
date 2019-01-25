@@ -22,15 +22,6 @@ package com.gx.sharding.jpa.service;
  */
 public interface CommonService {
 
-    /**
-     * 初始化环境
-     */
-    void initEnvironment();
-
-    /**
-     * 清除环境
-     */
-    void cleanEnvironment();
 
     /**
      * 运行成功

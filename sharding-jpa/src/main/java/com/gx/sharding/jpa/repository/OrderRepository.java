@@ -19,8 +19,20 @@ package com.gx.sharding.jpa.repository;
 
 import com.gx.sharding.jpa.entity.Order;
 
+import java.util.List;
+
 /**
  * 订单接口集成公共测试接口
  */
-public interface OrderRepository extends CommonRepository<Order> {
+public interface OrderRepository{
+
+
+    Long insert(Order entity);
+
+    void delete(Long id);
+
+    List<Order> selectAll();
+
+    List<Order> selectRange();
+
 }
