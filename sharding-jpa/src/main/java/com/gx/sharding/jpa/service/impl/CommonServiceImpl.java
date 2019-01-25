@@ -90,7 +90,7 @@ public abstract class CommonServiceImpl implements CommonService {
         System.out.println("---------------------------- Begin Insert Data ----------------------------");
         List<Long> result = new ArrayList<>(10);
         System.out.println("开始插入数据");
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 1000; i++) {
             Order order = newOrder();
             order.setUserId(i);
             order.setStatus("INSERT_TEST");
