@@ -15,13 +15,15 @@
  * </p>
  */
 
-package com.gx.sharding.jpa.service;
+package com.gx.sharding.jpa.service.impl;
 
 import com.gx.sharding.jpa.entity.Order;
 import com.gx.sharding.jpa.entity.OrderItem;
 import com.gx.sharding.jpa.repository.OrderItemRepository;
 import com.gx.sharding.jpa.repository.OrderRepository;
 import com.gx.sharding.jpa.repository.TransactionTypeRepository;
+import com.gx.sharding.jpa.service.SpringEntityTransactionService;
+import com.gx.sharding.jpa.service.impl.ShardingProxyTransactionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

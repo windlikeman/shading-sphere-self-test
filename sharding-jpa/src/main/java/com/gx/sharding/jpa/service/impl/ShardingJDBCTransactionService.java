@@ -15,37 +15,40 @@
  * </p>
  */
 
-package com.gx.sharding.jpa.service;
+package com.gx.sharding.jpa.service.impl;
 
-import com.gx.sharding.jpa.repository.TransactionTypeRepository;
+import com.gx.sharding.jpa.service.TransactionService;
 import io.shardingsphere.transaction.annotation.ShardingTransactionType;
 import io.shardingsphere.transaction.api.TransactionType;
+import io.shardingsphere.transaction.api.TransactionTypeHolder;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 基于代理端接入
+ * 在客户端进行分库分表的Sharding-JDBC，
+ * 虽然可以作为轻量级微服务框架灵活应用，
+ * 但却没有作为云接入端进行统一管控的能力
  */
-public abstract class ShardingProxyTransactionService extends CommonServiceImpl implements TransactionService {
+public abstract class ShardingJDBCTransactionService extends CommonServiceImpl implements TransactionService {
     
     @Override
-    @Transactional
     @ShardingTransactionType
+    @Transactional
     public void processFailureWithLocal() {
         printTransactionType();
         super.processFailure();
     }
     
     @Override
-    @Transactional
     @ShardingTransactionType(TransactionType.XA)
+    @Transactional
     public void processFailureWithXa() {
         printTransactionType();
         super.processFailure();
     }
     
     @Override
-    @Transactional
     @ShardingTransactionType(TransactionType.BASE)
+    @Transactional
     public void processFailureWithBase() {
         printTransactionType();
         super.processFailure();
@@ -53,8 +56,6 @@ public abstract class ShardingProxyTransactionService extends CommonServiceImpl 
     
     @Override
     public void printTransactionType() {
-        System.out.println(String.format("-------------- Process With Transaction %s ---------------", getTransactionTypeRepository().showTransactionType()));
+        System.out.println(String.format("-------------- Process With Transaction %s ---------------", TransactionTypeHolder.get()));
     }
-    
-    protected abstract TransactionTypeRepository getTransactionTypeRepository();
 }
