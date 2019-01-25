@@ -5,19 +5,15 @@
     <parent>
         <groupId>io.shardingsphere</groupId>
         <artifactId>sharding-sphere-self-test</artifactId>
-        <version>3.1.0</version>
+        <version>5.0.0</version>
     </parent>
-    <artifactId>spring-boot-orche-jpa-example</artifactId>
+    <artifactId>sharding-jpa</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>io.shardingsphere</groupId>-->
-        <!--<artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-orchestration-reg-etcd</artifactId>
@@ -41,6 +37,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
