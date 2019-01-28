@@ -15,24 +15,16 @@
  * </p>
  */
 
-package com.gx.sharding.jpa.repository;
+package com.gx.sharding.jpa.type;
 
-import com.gx.sharding.jpa.entity.Order;
+public enum RegistryCenterType {
 
-import java.util.List;
-
-/**
- * 订单接口集成公共测试接口
- */
-public interface OrderRepository{
-
-
-    Long insert(Order entity);
-
-    void delete(Long id);
-
-    List<Order> selectAll();
-
-    List<Order> selectRange();
-
+    /**
+     * ZOOKEEPER注册中心
+     */
+    ZOOKEEPER,
+    /**
+     * ETCD注册中心
+     */
+    ETCD
 }

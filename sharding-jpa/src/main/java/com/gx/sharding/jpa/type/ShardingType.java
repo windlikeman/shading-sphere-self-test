@@ -15,28 +15,28 @@
  * </p>
  */
 
-package com.gx.sharding.jpa.service;
+package com.gx.sharding.jpa.type;
 
-/**
- * 公共测试方法
- */
-public interface CommonService {
-
+public enum ShardingType {
 
     /**
-     * 运行成功
-     * @param isRangeSharding
+     * 分库
      */
-    void processSuccess(boolean isRangeSharding);
-
+    SHARDING_DATABASES,
     /**
-     * 运行失败
+     * 分表
      */
-    void processFailure();
-
+    SHARDING_TABLES,
     /**
-     * 打印数据
-     * @param isRangeSharding
+     * 分库分表
      */
-    void printData(boolean isRangeSharding);
+    SHARDING_DATABASES_AND_TABLES,
+    /**
+     * 主从
+     */
+    MASTER_SLAVE,
+    /**
+     * 主从分片
+     */
+    SHARDING_MASTER_SLAVE
 }
