@@ -19,6 +19,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
 
+    @Column(name = "community_number")
+    private Integer communityNumber;
     /**
      * 电话
      */
@@ -162,6 +164,14 @@ public class User implements Serializable {
      */
     public Date getUpdateTime() {
         return updateTime;
+    }
+
+    public Integer getCommunityNumber() {
+        return communityNumber;
+    }
+
+    public void setCommunityNumber(Integer communityNumber) {
+        this.communityNumber = communityNumber;
     }
 
     /**

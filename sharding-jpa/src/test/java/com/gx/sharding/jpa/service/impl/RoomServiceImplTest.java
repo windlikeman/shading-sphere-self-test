@@ -1,14 +1,15 @@
-package com.gx.sharding.jpa.service;
+package com.gx.sharding.jpa.service.impl;
 
 import com.gx.sharding.jpa.ShardingJpaApplicationTests;
 import com.gx.sharding.jpa.entity.Room;
+import com.gx.sharding.jpa.service.RoomService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 
-public class RoomServiceTest extends ShardingJpaApplicationTests {
+public class RoomServiceImplTest extends ShardingJpaApplicationTests {
 
     @Autowired
     private RoomService roomService;

@@ -17,21 +17,35 @@
 
 package com.gx.sharding.jpa.algorithm;
 
+import com.gx.sharding.jpa.config.ConstantConfig;
 import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
 import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
 /**
- * 单双分库算法
+ * 取模
+ * @author liyongfei
  */
 public class PreciseModuloShardingDatabaseAlgorithm implements PreciseShardingAlgorithm<Integer> {
-    
+
+    private static final Logger logger = LoggerFactory.getLogger(PreciseModuloShardingDatabaseAlgorithm.class);
+
     @Override
     public String doSharding(final Collection<String> databaseNames, final PreciseShardingValue<Integer> shardingValue) {
+
+        if (databaseNames.contains(ConstantConfig.DEFAULT_DATABASE)){
+            logger.info("本次分库路由：{}",ConstantConfig.DEFAULT_DATABASE);
+            return ConstantConfig.DEFAULT_DATABASE;
+        }
+        if (shardingValue.getValue() < ConstantConfig.DEFAULT_MOD ){
+            logger.error("取模参数从{}开始，请重新设置小区编号",ConstantConfig.DEFAULT_MOD);
+        }
         //取模
         for (String each : databaseNames) {
-            if (each.endsWith(shardingValue.getValue() % 2 + "")) {
+            if (each.endsWith(shardingValue.getValue() % ConstantConfig.DEFAULT_MOD + "")) {
                 return each;
             }
         }
