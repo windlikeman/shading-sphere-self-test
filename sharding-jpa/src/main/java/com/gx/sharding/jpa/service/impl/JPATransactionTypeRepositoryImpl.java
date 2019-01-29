@@ -1,6 +1,7 @@
-package com.gx.sharding.jpa.repository;
+package com.gx.sharding.jpa.service.impl;
 
 import com.gx.sharding.jpa.entity.TransactionType;
+import com.gx.sharding.jpa.service.TransactionTypeService;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,7 @@ import javax.persistence.PersistenceContext;
  * @author liyongfei
  */
 @Repository
-public class JPATransactionTypeRepositoryImpl implements TransactionTypeRepository {
+public class JPATransactionTypeRepositoryImpl implements TransactionTypeService {
 
     @PersistenceContext
     private EntityManager entityManager;

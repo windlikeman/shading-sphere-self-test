@@ -9,6 +9,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.persistence.EntityManagerFactory;
 
 
+/**
+ * @author liyongfei
+ */
 @Configuration
 public class TransactionConfig {
 

@@ -15,7 +15,7 @@
  * </p>
  */
 
-package com.gx.sharding.jpa.repository;
+package com.gx.sharding.jpa.service;
 
 
 import com.gx.sharding.jpa.entity.TransactionType;
@@ -23,7 +23,7 @@ import com.gx.sharding.jpa.entity.TransactionType;
 /**
  * 展示事务类别
  */
-public interface TransactionTypeRepository {
+public interface TransactionTypeService {
 
     /**
      * 展示事务类别
